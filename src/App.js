@@ -1,11 +1,15 @@
-import CipherMap from "./Components/CipherMap/CipherMap";
-import Navbar from "./Components/Navbar/Navbar";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import Sidebar from "./Components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <div className="">
-      <Navbar />
-      <CipherMap />
+    <div className="main_container">
+      <div className="lcomponents">
+        <Sidebar />
+      </div>
+      <div className="rcomponents">
+        <Dashboard />
+      </div>
     </div>
   );
 }

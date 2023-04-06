@@ -3,7 +3,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-family: "Open Sans", Roboto, sans-serif;
   /* font-size: 16px
   font-style: normal
   font-variant-caps: normal
@@ -16,4 +15,37 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  font-family: "Open Sans", Roboto, sans-serif;
+}
+
+.main_container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.lcomponents {
+  width: 70px;
+}
+.rcomponents {
+  width: 100%;
+}
+
+.mp-underline {
+  background: rgba(10, 30, 50, 0.1);
+  border-radius: 0.5px;
+  height: 1px;
+  margin: 1.5rem 0 1rem;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808191;
 }

@@ -55,37 +55,41 @@ function CipherMap() {
     const DayFormat = "DDMMYYYY";
 
     return (
-      <div className="timeline">
-        <div className="timeline-months">
-          {months.map((_, index) => (
-            <Month key={index} index={index} startDate={startDate} />
-          ))}
-        </div>
-
-        <div className="timeline-body">
-          <div className="timeline-weekdays">
-            {weekDays.map((_, index) => (
-              <WeekDay key={index} index={index} startDate={startDate} />
+      <div className="cipherMap-container">
+        <div className="mp-top-row">CIPHER MAP</div>
+        <div className="timeline">
+          <div className="timeline-months">
+            {months.map((_, index) => (
+              <Month key={index} index={index} startDate={startDate} />
             ))}
           </div>
 
-          <div className="timeline-cells">
-            {cells.map((_, index) => {
-              let date = moment(startDate).add(index, "day");
-              let dataPoint = data.find(
-                (d) =>
-                  moment(date).format(DayFormat) ===
-                  moment(d.date).format(DayFormat)
-              );
-              let alpha = colorMultiplier * dataPoint.value;
-              let color = colorFunc({ alpha });
+          <div className="timeline-body">
+            <div className="timeline-weekdays">
+              {weekDays.map((_, index) => (
+                <WeekDay key={index} index={index} startDate={startDate} />
+              ))}
+            </div>
 
-              return (
-                <Cell key={index} index={index} date={date} color={color} />
-              );
-            })}
+            <div className="timeline-cells">
+              {cells.map((_, index) => {
+                let date = moment(startDate).add(index, "day");
+                let dataPoint = data.find(
+                  (d) =>
+                    moment(date).format(DayFormat) ===
+                    moment(d.date).format(DayFormat)
+                );
+                let alpha = colorMultiplier * dataPoint.value;
+                let color = colorFunc({ alpha });
+
+                return (
+                  <Cell key={index} index={index} date={date} color={color} />
+                );
+              })}
+            </div>
           </div>
         </div>
+        <div className="mp-underline"></div>
       </div>
     );
   }
@@ -94,7 +98,8 @@ function CipherMap() {
       <Timeline
         range={dateRange}
         data={data}
-        colorFunc={({ alpha }) => `rgba(3, 160, 3, ${alpha})`}
+        colorFunc={({ alpha }) => `rgba(243, 146, 45
+        , ${alpha})`}
       />
     </div>
   );
