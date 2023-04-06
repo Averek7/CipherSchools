@@ -1,3 +1,7 @@
+.mp-about-container {
+  padding: 5px 40px;
+  background-color: #f3f4fa;
+}
 .about_container {
   box-sizing: border-box;
   gap: 1rem;
@@ -58,4 +62,3 @@
   resize: none;
   width: 100%;
 }
-

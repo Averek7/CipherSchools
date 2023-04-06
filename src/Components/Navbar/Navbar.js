@@ -2,7 +2,6 @@ import React from "react";
 import "./Navbar.css";
 import logo from "../../assets/Cipherschools_icon@2x.3b571d743ffedc84d039.png";
 import { BsBell, BsSearch, BsSliders } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineCompass } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 

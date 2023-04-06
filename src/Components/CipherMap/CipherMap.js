@@ -56,7 +56,7 @@ function CipherMap() {
 
     return (
       <div className="cipherMap-container">
-        <div className="mp-top-row">CIPHER MAP</div>
+        <div className="mp-left-header">CIPHER MAP</div>
         <div className="timeline">
           <div className="timeline-months">
             {months.map((_, index) => (
@@ -94,13 +94,15 @@ function CipherMap() {
     );
   }
   return (
-    <div id="container">
-      <Timeline
-        range={dateRange}
-        data={data}
-        colorFunc={({ alpha }) => `rgba(243, 146, 45
+    <div className="cipher-container">
+      <div id="container">
+        <Timeline
+          range={dateRange}
+          data={data}
+          colorFunc={({ alpha }) => `rgba(243, 146, 45
         , ${alpha})`}
-      />
+        />
+      </div>
     </div>
   );
 }

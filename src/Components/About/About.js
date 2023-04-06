@@ -3,7 +3,7 @@ import React from "react";
 
 function About() {
   return (
-    <>
+    <div className="mp-about-container">
       <div className="about_container">
         <div className="header_container">
           <div className="mp-left-header">About</div>
@@ -21,9 +21,9 @@ function About() {
         </div>
       </div>
       <div className="mp-underline">
-        
+
       </div>
-    </>
+    </div>
   );
 }
 

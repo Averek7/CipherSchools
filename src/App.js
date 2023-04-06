@@ -1,3 +1,4 @@
+import "./AppModule.css";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
