@@ -1,9 +1,17 @@
+.user_box {
+  background: #fff;
+  height: 110px;
+  /* padding-right: 67px; */
+  /* position: fixed; */
+  width: 100%;
+  z-index: 99 !important;
+}
 .user-back {
   background-image: url(../../assets/ProfileCover.png);
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* height: 100%; */
+  height: 100%;
   width: 100%;
 }
 .header-container {

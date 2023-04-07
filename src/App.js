@@ -1,6 +1,8 @@
 import "./AppModule.css";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Header from "./Components/Header/Header";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
         <Sidebar />
       </div>
       <div className="rcomponents">
+        <Navbar />
+        <Header />
         <Dashboard />
       </div>
     </div>

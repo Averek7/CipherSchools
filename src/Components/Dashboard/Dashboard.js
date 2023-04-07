@@ -6,15 +6,15 @@ import Header from "../Header/Header";
 import CipherMap from "../CipherMap/CipherMap";
 import Web from "../Web/Web";
 import Professional from "../Professional/Professional";
+import Password from "../Password/Password";
 function Dashboard() {
   return (
     <div className="component">
-      <Navbar />
-      <Header />
       <About />
       <CipherMap />
       <Web />
-      <Professional/>
+      <Professional />
+      <Password />
     </div>
   );
 }
