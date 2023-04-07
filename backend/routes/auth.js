@@ -8,14 +8,11 @@ const User = require("../model/User");
 const JWT_SECRET = "secret_token_user";
 
 router.post("/signup", async (req, res) => {
-  let success;
   const { email, password, name, phone_no } = req.body;
   try {
     let check_user = await User.findOne({ email, phone_no });
     if (check_user) {
-      success = false;
       return res.status(400).json({
-        success,
         error: "Sorry ! User already exists with entered email or phone number",
       });
     }
@@ -39,14 +36,12 @@ router.post("/signup", async (req, res) => {
     };
 
     const authToken = jwt.sign(data, JWT_SECRET);
-    success = true;
-    res.json({
-      success,
+    return res.status(200).json({
       message: `Successfully Merged User ${name}`,
     });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Error Occurred", { message: "Failed Sign Up" });
+    return res.status(500).json({ message: "Failed Sign Up" });
   }
 });
 
@@ -71,7 +66,7 @@ router.post("/login_email", async (req, res) => {
     };
     const authToken = jwt.sign(payLoad, JWT_SECRET);
     success = true;
-    res.json({
+    res.status(200).json({
       success,
       message: "Successfully Signed In",
       id: user.id,
@@ -81,7 +76,9 @@ router.post("/login_email", async (req, res) => {
     });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Some error occurred", { message: "Failed Sign In" });
+    return res
+      .status(500)
+      .json("Some error occurred", { message: "Failed Sign In" });
   }
 });
 
@@ -124,18 +121,15 @@ router.put("/change_password", fetchuser, async (req, res) => {
   const { current_password, confirm_password, new_password } = req.body;
   try {
     let status = false;
-    const user_id = req.admin.id.toString();
-    const admin = await User.findById(user_id);
-    if (!admin) {
+    const user_id = req.user.id.toString();
+    const user = await User.findById(user_id);
+    if (!user) {
       res.status(404).send("Login Required ! User Not Found");
     }
     if (current_password !== confirm_password) {
       res.status(400).json({ status, error: "Password mismatch" });
     }
-    const checkPassword = await bcrypt.compare(
-      current_password,
-      admin.password
-    );
+    const checkPassword = await bcrypt.compare(current_password, user.password);
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(new_password, salt);
     if (!checkPassword) {
@@ -155,7 +149,7 @@ router.put("/change_password", fetchuser, async (req, res) => {
 router.put("/update_user", fetchuser, async (req, res) => {
   try {
     let success = false;
-    let user_update = await User.findById(req.admin.id);
+    let user_update = await User.findById(req.user.id);
 
     if (!user_update) {
       return res.status(401).send("Access Denied");
@@ -175,10 +169,10 @@ router.put("/update_user", fetchuser, async (req, res) => {
   }
 });
 
-router.delete("/delete_admin", fetchuser, async (req, res) => {
+router.delete("/delete_user", fetchuser, async (req, res) => {
   try {
     let success = false;
-    let user_delete = await User.findById(req.admin.id);
+    let user_delete = await User.findById(req.user.id);
 
     if (!user_delete) {
       return res.status(401).send("Access Denied");
@@ -208,7 +202,7 @@ router.delete("/delete_admin", fetchuser, async (req, res) => {
 router.get("/view_profile", fetchuser, async (req, res) => {
   let status = false;
   try {
-    const user_id = req.admin.id;
+    const user_id = req.user.id;
     const profile = await User.findById(user_id.toString()).select("-password");
     status = true;
     res.json({ status, message: "Profile Fetched", profile });
