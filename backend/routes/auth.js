@@ -76,16 +76,14 @@ router.post("/login_email", async (req, res) => {
     });
   } catch (error) {
     console.error(error.message);
-    return res
-      .status(500)
-      .json("Some error occurred", { message: "Failed Sign In" });
+    return res.status(500).json({ message: "Failed Sign In" });
   }
 });
 
 router.post("/login_phone", async (req, res) => {
   const { phone_no, password } = req.body;
   try {
-    const user = await User.findOne({ phone_no, type: "A" });
+    const user = await User.findOne({ phone_no });
     if (!user) {
       res.status(400).send({ errors: "Please enter correct credentials" });
     }

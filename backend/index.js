@@ -12,6 +12,7 @@ connectToMongo();
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/web", require("./routes/web"));
+app.use("/api/follow", require("./routes/follow"));
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

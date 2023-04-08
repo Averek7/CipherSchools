@@ -23,16 +23,19 @@ const UserSchema = new Schema(
     },
     gender: {
       type: String,
-      // required: true,
     },
     dob: {
       type: Date,
-      // required: true,
+    },
+    follows: {
+      type: [{ follow_id: mongoose.Schema.Types.ObjectId }],
+    },
+    following: {
+      type: [{ following_id: mongoose.Schema.Types.ObjectId }],
     },
   },
   {
     collection: "users",
-    timestamps: true,
   }
 );
 

@@ -24,7 +24,7 @@ router.put("/update_prof", fetchuser, async (req, res) => {
   }
 });
 
-router.delete("/delete_remove", fetchuser, async (req, res) => {
+router.delete("/prof_remove", fetchuser, async (req, res) => {
   try {
     let prof_delete = await User.findById(req.user.id);
     if (!prof_delete) {
