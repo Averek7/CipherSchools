@@ -88,6 +88,39 @@ router.put("/add_follower/:id", fetchuser, async (req, res) => {
   }
 });
 
-router.delete("/remove_follower", fetchuser, async (req, res) => {});
+router.put("/remove_follower/:id", fetchuser, async (req, res) => {
+  try {
+    const user_id = req.user.id;
+    const follower_id = req.params.id;
+
+    const user = await User.findById(user_id);
+    if (!user) {
+      return res.status(404).json(`User ${user_id} Not Found `);
+    }
+
+    const updatefollow = {
+      $pull: { follows: { follow_id: follower_id } },
+    };
+
+    const updatefollowing = {
+      $pull: { following: { following_id: user_id } },
+    };
+
+    const follows = await User.findByIdAndUpdate(user_id, updatefollow);
+    const following = await User.findByIdAndUpdate(
+      follower_id,
+      updatefollowing
+    );
+
+    return res.status(200).json({
+      follows,
+      following,
+      message: `Follower ${follower_id.name} Added to ${user_id.name}`,
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json("Some Error Occurred");
+  }
+});
 
 module.exports = router;
